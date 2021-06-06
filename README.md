@@ -154,3 +154,47 @@ public class Car {
 ## 📝 License
 
 This project is [MIT](https://github.com/woowacourse/java-racingcar-precourse/blob/master/LICENSE) licensed.
+
+---
+
+# 기능 목록
+
+## Car
+
+- 전진 또는 멈춤
+
+- 상태 출력
+
+	- 현재 위치 출력
+
+	- 현재 위치와의 비교 값 출력
+
+	- 이름 출력
+
+	- 현재 포지션까지의 진행 상태 출력
+
+## CarListGenerator
+
+- , 로 연결된 이름 문자열을 받아, 해당 이름들로 Car List 생성
+
+## InputValidator
+
+- , 로 연결된 이름 문자열 검증
+
+- 횟수 검증
+
+## RacingController
+
+- carList 와 round 를 입력 받아 세팅
+
+- 레이싱
+
+	- 입력 받은 round 만큼 진행
+
+	- 각 round 마다 모든 차들은 전진 또는 멈춤
+
+	- 그 후, 모든 차들은 진행 상태 출력
+
+	- 최종 우승자 선정
+
+- 최종 우승자 출력 
