@@ -3,8 +3,7 @@ package racingcar;
 import java.util.ArrayList;
 
 public class CarListGenerator {
-
-    public ArrayList<Car> generateCarList(String namesWithComma) {
+    public ArrayList<Car> generate(String namesWithComma) {
         ArrayList<Car> carList = new ArrayList<>();
         String[] names = namesWithComma.split(",");
         for (String name : names) {
