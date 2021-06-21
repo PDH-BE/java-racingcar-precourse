@@ -157,44 +157,64 @@ This project is [MIT](https://github.com/woowacourse/java-racingcar-precourse/bl
 
 ---
 
-# 기능 목록
+# Architecture
 
-## Car
+<img width="731" alt="스크린샷 2021-06-21 오후 2 10 24" src="https://user-images.githubusercontent.com/82703938/122710094-8c905d80-d29a-11eb-83d8-afbb3f1a65f4.png">
 
-- 전진 또는 멈춤
+## Application
 
-- 상태 출력
+- Knowing
 
-	- 현재 위치 출력
+  - 모든 객체
 
-	- 현재 위치와의 비교 값 출력
+- Doing
 
-	- 이름 출력
-
-	- 현재 포지션까지의 진행 상태 출력
-
-## CarListGenerator
-
-- , 로 연결된 이름 문자열을 받아, 해당 이름들로 Car List 생성
+  - InputValidator 객체로 입력값 검증
+  
+  - RacingController 에 입력값을 전달, 레이싱 결과를 리턴받아 출력
 
 ## InputValidator
 
-- , 로 연결된 이름 문자열 검증
+- Knowing
 
-- 횟수 검증
+  - 유효한 이름 조건
+  
+  - 유효한 Round 조건
+
+- Doing
+
+  - 이름 검증, 유효하지 않을 시 예외 반환
+  
+  - Round 검증, 유효하지 않을 시 예외 반환
 
 ## RacingController
 
-- carList 와 round 를 입력 받아 세팅
+- Knowing
 
-- 레이싱
+  - CarListGenerator
+  
+  - Car 인터페이스
 
-	- 입력 받은 round 만큼 진행
+- Doing
 
-	- 각 round 마다 모든 차들은 전진 또는 멈춤
+  - 이름과 Round 를 입력받아, 레이싱 결과 반환
 
-	- 그 후, 모든 차들은 진행 상태 출력
+## CarListGenerator
 
-	- 최종 우승자 선정
+- Doing
 
-- 최종 우승자 출력 
+  - ,로 연결된 이름들을 입력받아 해당 이름들로 Car 생성, 리스트로 반환 
+
+## Car
+
+- Knowing
+
+  - 전진, 멈춤의 조건
+
+- Doing
+
+  - 전진, 멈춤을 시행한 후 현재 위치 반환
+  
+  - 입력값과 현재 위치의 일치 여부 반환
+  
+  - 현재 상태(이름 + 위치) 반환
