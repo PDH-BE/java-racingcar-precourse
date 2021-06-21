@@ -14,20 +14,17 @@ public class Car {
         this.name = name;
     }
 
-    public void goOrStop() {
-        this.competeGoOrStop();
-    }
-
-    public int getPosition() {
-        return this.position;
-    }
-
-    public boolean isThisPosition(int position) {
-        return this.position == position;
+    public int goOrStop() {
+        processGoOrStop();
+        return position;
     }
 
     public String getName() {
-        return this.name;
+        return name;
+    }
+
+    public boolean isPosition(int position) {
+        return this.position == position;
     }
 
     @Override
@@ -36,14 +33,10 @@ public class Car {
                 "-".repeat(Math.max(0, this.position));
     }
 
-    private void competeGoOrStop() {
+    private void processGoOrStop() {
         int numberForGoOrStop = RandomUtils.nextInt(START_INCLUSIVE, END_INCLUSIVE);
         if (numberForGoOrStop >= CRITERIA_FOR_GO) {
-            this.go();
+            position++;
         }
-    }
-
-    private void go() {
-        this.position++;
     }
 }
