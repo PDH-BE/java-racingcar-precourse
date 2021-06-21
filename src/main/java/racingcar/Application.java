@@ -1,24 +1,18 @@
 package racingcar;
 
-import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Application {
-    public static void main(String[] args) {
-        final Scanner scanner = new Scanner(System.in);
-        final InputValidator inputValidator = new InputValidator();
-        final CarListGenerator carListGenerator = new CarListGenerator();
-        final RacingController racingController = new RacingController();
+    private static final Scanner scanner = new Scanner(System.in);
+    private static final InputValidator inputValidator = new InputValidator();
+    private static final CarListGenerator carListGenerator = new CarListGenerator();
+    private static final RacingController racingController = new RacingController(carListGenerator);
 
-        String validNamesWithComma = inputNamesWithCommaUntilValid(scanner, inputValidator);
-        ArrayList<Car> carList = carListGenerator.generateCarList(validNamesWithComma);
-        int validRound = inputRoundUntilValid(scanner, inputValidator);
-        racingController.setRacing(carList, validRound);
-        racingController.racing();
-        System.out.println(racingController);
+    public static void main(String[] args) {
+        System.out.println(racingController.racing(inputNamesWithCommaUntilValid(), inputRoundUntilValid()));
     }
 
-    private static int inputRoundUntilValid(Scanner scanner, InputValidator inputValidator) {
+    private static int inputRoundUntilValid() {
         while (true) {
             System.out.println("시도할 회수는 몇회인가요?");
             String round = scanner.next();
@@ -32,12 +26,12 @@ public class Application {
 
     }
 
-    private static String inputNamesWithCommaUntilValid(Scanner scanner, InputValidator nameValidator) {
+    private static String inputNamesWithCommaUntilValid() {
         while (true) {
             System.out.println("경주할 자동차 이름을 입력하세요.(이름은 쉼표(,) 기준으로 구분)");
             String namesWithComma = scanner.next();
             try {
-                nameValidator.validateNamesWithComma(namesWithComma);
+                inputValidator.validateNamesWithComma(namesWithComma);
                 return namesWithComma;
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
